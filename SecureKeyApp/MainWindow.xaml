@@ -1,0 +1,27 @@
+﻿<Window x:Class="SecureKeyApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SecureKeyApp"
+        mc:Ignorable="d"
+        SizeToContent="Width"
+        Title="DSA Bank Secure Key" Height="220" Width="300"
+        ResizeMode="NoResize"
+        Icon="Images/favicon.ico">
+    <Grid Height="191" VerticalAlignment="Top">
+
+        <Rectangle Fill="#C2A1B6" />
+        <Rectangle Fill="#864F72" Margin="44,10,0,146" />
+        <Button x:Name="BtnCode" Background="#864F72" FontWeight="Bold" Foreground="White" Content="Get Code" HorizontalAlignment="Left" Margin="207,151,0,0" VerticalAlignment="Top" Width="75" Click="BtnCode_Click"/>
+        <PasswordBox x:Name="TxtPassword" HorizontalAlignment="Left" Margin="10,115,0,0" VerticalAlignment="Top" Width="162"/>
+        <Label x:Name="LabelPassword" FontWeight="Bold" Foreground="White" Content="Password" HorizontalAlignment="Left" Margin="10,89,0,0" VerticalAlignment="Top" Width="284"/>
+        <Label x:Name="LabelTip" FontSize="10" FontStyle="Italic" FontWeight="Bold" Foreground="White" Content="" HorizontalAlignment="Left" Margin="10,155,0,0" VerticalAlignment="Top" Width="192"/>
+        <TextBox x:Name="TxtUsername" HorizontalAlignment="Left" Height="18" Margin="10,71,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="162" />
+        <Label x:Name="LabelUsername" Foreground="White" FontWeight="Bold" Content="Username" HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top" Width="284"/>
+        <Label x:Name="LabelTitle" Foreground="White" FontWeight="Bold" HorizontalContentAlignment="Right" FontSize="14" Content="DSA Bank Secure Key Generator" HorizontalAlignment="Left" Margin="0,12,0,0" VerticalAlignment="Top" Width="282" Height="35"/>
+        <Image x:Name="ImageLogo" HorizontalAlignment="Left" Source="Images/Logo.png" Height="91" VerticalAlignment="Top" Width="94" RenderTransformOrigin="3.771,-1.545" Margin="190,50,0,0"/>
+        <TextBox x:Name="TextCode" IsReadOnly="True" BorderThickness="0" Background="#C2A1B6" FontWeight="Bold"  HorizontalAlignment="Left" Margin="10,145,0,0" VerticalAlignment="Top" Width="162" MouseDoubleClick="TextCode_OnMouseDoubleClick"> 
+        </TextBox>
+    </Grid>
+</Window>
