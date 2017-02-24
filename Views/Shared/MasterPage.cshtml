@@ -1,0 +1,96 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-gb" class="en-gb">
+<head xmlns:og="http://ogp.me/ns#" xmlns:fb="http://ogp.me/ns/fb#">
+    <meta http-equiv="imagetoolbar" content="false" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>DSA Bank Malta | Personal and Business Banking</title>
+    <link rel="shortcut icon" type="image/png" href="~/Content/Images/favicon.ico" />
+    <link rel="search" type="application/opensearchdescription+xml" href="http://eu.battle.net/en-gb/data/opensearch" title="Battle.net Search" />
+    <meta name="description" content="Explore the savage world of Draenor at a pivotal moment in history with this upcoming World of Warcraft expansion." />
+    <meta name="author" content="Dylan Vassallo">
+    <meta property="og:site_name" content="World of Warcraft®" />
+    <meta property="og:title" content="World of Warcraft: Warlords of Draenor" />
+    <meta property="og:description" content="Explore the savage world of Draenor at a pivotal moment in history with this upcoming World of Warcraft expansion." />
+    <meta property="og:url" content="http://eu.battle.net/wow/en/warlords-of-draenor/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:image" content="http://media.blizzard.com/wow/warlords-of-draenor-6y1fz/media/og-warlords.jpg" />
+    <meta property="og:image" content="http://media.blizzard.com/battle.net/logos/og-blizzard.png" />
+
+
+    @System.Web.Optimization.Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/ui/dropdownsoptions.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    @System.Web.Optimization.Styles.Render("~/bundles/css")
+  
+</head>
+
+<body class="en-gb " onload="GetCurrencies(); GetBankAccountTypes(); GetInterestRates();">
+<div class="navbar-fixed">
+    <nav>
+        <div class="nav-wrapper" style="height: 100%;">
+            <div class="container" style="height: 100%;">
+                <a href="@Url.Action("Index", "Home")" class="brand-logo"><img class="logo-image" src="~/Content/Images/logo.png"/></a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                    @if (!Context.User.Identity.IsAuthenticated)
+                    {
+                        <li><a href="@Url.Action("SignIn", "Users")">Internet Banking Sign In <i class="fa fa-user" aria-hidden="true"></i></a></li>
+                    }
+                    else
+                    {
+                        <li><a href="@Url.Action("Accounts", "BankAccounts")">Accounts</a></li>
+                        <li><a href="@Url.Action("SignOut", "Users")">Sign out</a></li>
+                    }
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<div class="container">
+    @RenderBody()
+</div>
+
+
+<footer class="page-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">Footer Content</h5>
+                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+            </div>
+            <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Links</h5>
+                <ul>
+                    <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!">iLink 4</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer-copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">© @DateTime.Now.Year.ToString() DSA Bank Limited</div>
+                <div class="col-md-6" style="text-align: right;">Designed & Developed By Dylan Vassallo</div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+
+
+
+</html>

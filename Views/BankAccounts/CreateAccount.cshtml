@@ -1,0 +1,82 @@
+﻿@{
+    ViewBag.Title = "CreateAccount";
+    Layout = "~/Views/Shared/MasterPage.cshtml";
+}
+
+<div class="create-account margin-default">
+    <h2>Create Account</h2>
+    <form data-ajax="true" id="form0" method="post">
+        <input name="__RequestVerificationToken" type="hidden" value="rO5BCqB9FB9VlTEXVRcgeKgFp4VJ_8WkIuceNxf37DgJ_0UMYkFSmbodou1-6U-Wm32xqOCAmtGJOgxX0pFV7HIMeLzG-P2tkUtnNH1dOfw1"/>
+        <div class="form-horizontal">
+            <hr/>
+            <div class="form-group">
+                <label class="control-label col-md-2" style="text-align: left;">Currency</label>
+                <div class="col-md-10">
+                    <select id="ddlCurrencies" name="currencyFk"></select>
+                    <span class="field-validation-valid text-danger" data-valmsg-for="Currency_Fk" data-valmsg-replace="true"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2" style="text-align: left;">Account Type</label>
+                <div class="col-md-10">
+                    <select id="ddlBankAccountTypes" name="accountTypeFk"></select>
+                    <span class="field-validation-valid text-danger" data-valmsg-for="AccountType" data-valmsg-replace="true"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2" style="text-align: left;">Duration (<i>Months</i>) </label>
+                <div class="col-md-10">
+                    <select id="ddlinterestRates" name="durationMonth"></select>
+                    <span class="field-validation-valid text-danger" data-valmsg-for="DurationMonth" data-valmsg-replace="true"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2" for="friendlyName" style="text-align: left;">Friendly Name</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" id="friendlyName" name="FriendlyName" type="text" value=""/>
+                    <span class="field-validation-valid text-danger" data-valmsg-for="FriendlyName" data-valmsg-replace="true"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2" for="WithdrawnAccountNo" style="text-align: left;">Withdrawn Account Number</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" data-val-number="The field WithdrawnAccountNo must be a number." data-val-required="The WithdrawnAccountNo field is required." id="WithdrawnAccountNo" name="withdrawnAccountNumber" type="number" value="0"/>
+                    <span class="field-validation-valid text-danger" data-valmsg-for="WithdrawnAccountNo" data-valmsg-replace="true"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2" for="AmountWithdrawn" style="text-align: left;">Amount Withdrawn</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" data-val-number="The field AmountWithdrawn must be a number." data-val-required="The AmountWithdrawn field is required." id="AmountWithdrawn" name="amountWhitdrawn" type="text" value="0.00"/>
+                    <span class="field-validation-valid text-danger" data-valmsg-for="AmountWithdrawn" data-valmsg-replace="true"></span>
+                </div>
+            </div>
+
+            <div class="form-group pull-right">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default"/>
+                </div>
+            </div>
+            @if (ViewBag.Error != null)
+            {
+                <p>@ViewBag.Error</p>
+            }
+        </div>
+
+        <script>
+            $('#ddlBankAccountTypes').on('change', function (e) {
+                if ($('#ddlBankAccountTypes').val() === 'Fixed') {
+                    $('#ddlinterestRates').prop('disabled', false);
+                } else {
+                    $('#ddlinterestRates').prop('disabled', true);
+                }
+            });
+        </script>
+    </form>
+
+</div>

@@ -1,0 +1,25 @@
+﻿
+<table>
+    <thead>
+        <tr>
+            <th data-field="details">Details</th>
+            <th data-field="cur">Currency</th>
+            <th data-field="amount">Amount</th>
+            <th data-field="timestamp">Timestamp</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var transaction in Model)
+        {
+            <tr>
+                <td>@transaction.Details</td>
+                <td>@transaction.Currency_Fk</td>
+                <td>@transaction.Amount</td>
+                <td>@transaction.TransactionTimestamp</td>
+            </tr>
+        }
+
+    </tbody>
+</table>

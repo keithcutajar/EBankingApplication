@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "TransferFunds";
+    Layout = "~/Views/Shared/MasterPage.cshtml";
+}
+
+<h2>TransferFunds</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>TransferFundsModel</h4>
+        <form method="post">
+            <input name="__RequestVerificationToken" type="hidden" value="j4mChBE-9DEoW1HW5zeka9ssMmaftLVGPIW-sMKQqVB5x9eRh3un0eJG8tadzlEfXR8L19Apyx0LFMJisPMxxXSKGvIb569dDq9bdCM_qMs1"/>
+            <div class="form-horizontal">
+                <hr/>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">SaAccountNumber</label>
+                    <div class="col-md-10">
+                        <select id="ddlSavingsAccount" name="SaAccountNumber">
+                            @foreach (var sa in Model)
+                            {
+                                <option value="@sa">@sa</option>
+                            }
+                        </select>
+                        <span class="field-validation-valid text-danger" data-valmsg-for="SaAccountNumber" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="DaAccountNumber">DaAccountNumber</label>
+                    <div class="col-md-10">
+                        <input class="form-control text-box single-line" data-val="true" data-val-number="The field DaAccountNumber must be a number." data-val-required="The DaAccountNumber field is required." id="DaAccountNumber" name="DaAccountNumber" type="number" value=""/>
+                        <span class="field-validation-valid text-danger" data-valmsg-for="DaAccountNumber" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="Amount">Amount</label>
+                    <div class="col-md-10">
+                        <input class="form-control text-box single-line" data-val="true" data-val-number="The field Amount must be a number." data-val-required="The Amount field is required." id="Amount" name="Amount" type="text" value=""/>
+                        <span class="field-validation-valid text-danger" data-valmsg-for="Amount" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default"/>
+                    </div>
+                </div>
+            </div>
+            @if (ViewBag.Error != null)
+            {
+                <p>@ViewBag.Error</p>
+            }
+        </form>
+    </div>
+
+}

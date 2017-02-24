@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "DSA Bank Malta | Sign in";
+    Layout = "~/Views/Shared/MasterPage.cshtml";
+}
+
+<div class="sign-in margin-default pull-right">
+    @using (Ajax.BeginForm("SignIn", "Users", new AjaxOptions { OnComplete = "SignInComplete" }))
+    {
+        <p>Username </p>
+        <input type="text" id="username" name="username" />
+        <br />
+        <p>Code </p>
+        <input type="password" id="code" name="code" />
+        <br />
+        <br />
+        <input class="waves-effect waves-light btn" type="submit"  value="Sign in" />
+    }
+
+    <a>How to get code ? </a>
+
+    @if (ViewBag.error != null)
+    {
+        <p>@ViewBag.error</p>
+    }
+</div>

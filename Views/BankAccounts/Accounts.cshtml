@@ -1,0 +1,37 @@
+﻿@using BankSystemWebApp.Helpers
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/MasterPage.cshtml";
+}
+
+<h2>title</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th data-field="iban">Iban</th>
+        <th data-field="number">Account Number</th>
+        <th data-field="type">Account Type</th>
+        <th data-field="curcode">Currency Code</th>
+        <th data-field="balance">Balance</th>
+        <th data-field="friendlyName">Friendly Name</th>
+        <th data-field="transactions">Transactions</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var bankAccount in Model)
+        {
+            <tr>
+                <td>@bankAccount.Iban</td>
+                <td>@bankAccount.AccountNumber</td>
+                <td>@bankAccount.AccountType</td>
+                <td>@bankAccount.CurrencyCode</td>
+                <td>@bankAccount.Balance</td>
+                <td>@bankAccount.FriendlyName</td>
+                <td>@Html.EncodedActionLink("Transactions", "List", "Transactions", new {accountNumber = bankAccount.AccountNumber}, null)</td>
+            </tr>
+        }
+    </tbody>
+</table>

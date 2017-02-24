@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/MasterPage.cshtml";
+}
+
+<h2>title</h2>
+
+<script>
+  $(function() {
+    $( "#from" ).datepicker({
+      defaultDate: "+1w",
+      changeMonth: true,
+      numberOfMonths: 3,
+      onClose: function( selectedDate ) {
+        $( "#to" ).datepicker( "option", "minDate", selectedDate );
+      }
+    });
+    $( "#to" ).datepicker({
+      defaultDate: "+1w",
+      changeMonth: true,
+      numberOfMonths: 3,
+      onClose: function( selectedDate ) {
+        $( "#from" ).datepicker( "option", "maxDate", selectedDate );
+      }
+    });
+  });
+</script>
+
+<label for="startDate">From</label>
+<input type="text" id="startDate" name="startDate">
+<label for="endDate">to</label>
+<input type="text" id="endDate" name="endDate">
+
+@if (ViewBag.Acc != null)
+{
+    <input type="hidden" id="an" name="an" value="@ViewBag.Acc.ToString()"/>
+}
+
+<input class="waves-effect waves-light btn" id="filter-btn" type="submit" value="Filter" />
+
+<div id="content">
+    @Html.Partial("ListPartial")
+</div>
+
+    <script>
+        $("#filter-btn").click(function () {
+            var value = $('#startDate').val();
+            var value2 = $('#endDate').val();
+            var value3 = $('#an').val();
+
+            $.ajax({
+                type: "GET",
+                url: "/Transactions/PartialList",
+                data: { dateFrom : value, endDate : value2, accountNo : value3},
+                async: true,
+                cache: false,
+                dataType: "html",
+                success: function (data) {
+                    $("#content").html(data);
+                },
+                error: function (jqXhr, textStatus, errorThrown) {
+                    alert(textStatus + " - " + errorThrown);
+                }
+            });
+
+            return false;
+        });
+    </script>
+
+
