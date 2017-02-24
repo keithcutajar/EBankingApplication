@@ -1,0 +1,9 @@
+C:\Users\Achmand\Documents\Visual Studio 2015\Projects\DistributedSystems\BankApplication\Common\bin\Release\Common.dll.config
+C:\Users\Achmand\Documents\Visual Studio 2015\Projects\DistributedSystems\BankApplication\Common\bin\Release\Common.dll
+C:\Users\Achmand\Documents\Visual Studio 2015\Projects\DistributedSystems\BankApplication\Common\bin\Release\Common.pdb
+C:\Users\Achmand\Documents\Visual Studio 2015\Projects\DistributedSystems\BankApplication\Common\bin\Release\EntityFramework.dll
+C:\Users\Achmand\Documents\Visual Studio 2015\Projects\DistributedSystems\BankApplication\Common\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\Achmand\Documents\Visual Studio 2015\Projects\DistributedSystems\BankApplication\Common\bin\Release\EntityFramework.xml
+C:\Users\Achmand\Documents\Visual Studio 2015\Projects\DistributedSystems\BankApplication\Common\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\Achmand\Documents\Visual Studio 2015\Projects\DistributedSystems\BankApplication\Common\obj\Release\Common.dll
+C:\Users\Achmand\Documents\Visual Studio 2015\Projects\DistributedSystems\BankApplication\Common\obj\Release\Common.pdb

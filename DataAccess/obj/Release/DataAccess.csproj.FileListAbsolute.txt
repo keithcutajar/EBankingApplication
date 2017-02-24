@@ -1,0 +1,12 @@
+C:\Users\Achmand\Documents\Visual Studio 2015\Projects\DistributedSystems\BankApplication\DataAccess\bin\Release\DataAccess.dll.config
+C:\Users\Achmand\Documents\Visual Studio 2015\Projects\DistributedSystems\BankApplication\DataAccess\bin\Release\DataAccess.dll
+C:\Users\Achmand\Documents\Visual Studio 2015\Projects\DistributedSystems\BankApplication\DataAccess\bin\Release\DataAccess.pdb
+C:\Users\Achmand\Documents\Visual Studio 2015\Projects\DistributedSystems\BankApplication\DataAccess\bin\Release\Common.dll
+C:\Users\Achmand\Documents\Visual Studio 2015\Projects\DistributedSystems\BankApplication\DataAccess\bin\Release\EntityFramework.dll
+C:\Users\Achmand\Documents\Visual Studio 2015\Projects\DistributedSystems\BankApplication\DataAccess\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\Achmand\Documents\Visual Studio 2015\Projects\DistributedSystems\BankApplication\DataAccess\bin\Release\Common.pdb
+C:\Users\Achmand\Documents\Visual Studio 2015\Projects\DistributedSystems\BankApplication\DataAccess\bin\Release\EntityFramework.xml
+C:\Users\Achmand\Documents\Visual Studio 2015\Projects\DistributedSystems\BankApplication\DataAccess\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\Achmand\Documents\Visual Studio 2015\Projects\DistributedSystems\BankApplication\DataAccess\obj\Release\DataAccess.csprojResolveAssemblyReference.cache
+C:\Users\Achmand\Documents\Visual Studio 2015\Projects\DistributedSystems\BankApplication\DataAccess\obj\Release\DataAccess.dll
+C:\Users\Achmand\Documents\Visual Studio 2015\Projects\DistributedSystems\BankApplication\DataAccess\obj\Release\DataAccess.pdb

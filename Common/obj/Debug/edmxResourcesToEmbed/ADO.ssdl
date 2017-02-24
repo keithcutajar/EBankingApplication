@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BankSystemDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AccountTypes">
+    <Key>
+      <PropertyRef Name="Name" />
+    </Key>
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BankAccounts">
+    <Key>
+      <PropertyRef Name="Iban" />
+    </Key>
+    <Property Name="Iban" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Currency_Fk" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="Balance" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Username_Fk" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DateOpened" Type="datetime" Nullable="false" />
+    <Property Name="AccountType_Fk" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="AccountNumber" Type="bigint" Nullable="false" />
+    <Property Name="DateExpired" Type="datetime" />
+    <Property Name="FriendlyName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Expired" Type="bit" />
+  </EntityType>
+  <EntityType Name="Currencies">
+    <Key>
+      <PropertyRef Name="CurrencyCode" />
+    </Key>
+    <Property Name="CurrencyCode" Type="varchar" MaxLength="3" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InterestRates">
+    <Key>
+      <PropertyRef Name="Month" />
+    </Key>
+    <Property Name="Month" Type="int" Nullable="false" />
+    <Property Name="Rate" Type="numeric" Precision="4" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Transactions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountNo_Fk" Type="bigint" Nullable="false" />
+    <Property Name="Details" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Currency_Fk" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="Amount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Transaction_Timestamp" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Username" />
+    </Key>
+    <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Surname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="120" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Dob" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UsersRoles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+      <PropertyRef Name="Username" />
+    </Key>
+    <Property Name="RoleId" Type="int" Nullable="false" />
+    <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_BankAccounts_AccountTypes">
+    <End Role="AccountTypes" Type="Self.AccountTypes" Multiplicity="1" />
+    <End Role="BankAccounts" Type="Self.BankAccounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AccountTypes">
+        <PropertyRef Name="Name" />
+      </Principal>
+      <Dependent Role="BankAccounts">
+        <PropertyRef Name="AccountType_Fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BankAccounts_Currencies">
+    <End Role="Currencies" Type="Self.Currencies" Multiplicity="1" />
+    <End Role="BankAccounts" Type="Self.BankAccounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Currencies">
+        <PropertyRef Name="CurrencyCode" />
+      </Principal>
+      <Dependent Role="BankAccounts">
+        <PropertyRef Name="Currency_Fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BankAccounts_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="BankAccounts" Type="Self.BankAccounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Username" />
+      </Principal>
+      <Dependent Role="BankAccounts">
+        <PropertyRef Name="Username_Fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_Transactions_BankAccounts' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_Transactions_BankAccounts" />-->
+  <Association Name="FK_Transactions_Currencies">
+    <End Role="Currencies" Type="Self.Currencies" Multiplicity="1" />
+    <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Currencies">
+        <PropertyRef Name="CurrencyCode" />
+      </Principal>
+      <Dependent Role="Transactions">
+        <PropertyRef Name="Currency_Fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersRoles_Roles">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="UsersRoles" Type="Self.UsersRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UsersRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersRoles_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="UsersRoles" Type="Self.UsersRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Username" />
+      </Principal>
+      <Dependent Role="UsersRoles">
+        <PropertyRef Name="Username" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BankSystemDBModelStoreContainer">
+    <EntitySet Name="AccountTypes" EntityType="Self.AccountTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BankAccounts" EntityType="Self.BankAccounts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Currencies" EntityType="Self.Currencies" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InterestRates" EntityType="Self.InterestRates" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Transactions" EntityType="Self.Transactions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UsersRoles" EntityType="Self.UsersRoles" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_BankAccounts_AccountTypes" Association="Self.FK_BankAccounts_AccountTypes">
+      <End Role="AccountTypes" EntitySet="AccountTypes" />
+      <End Role="BankAccounts" EntitySet="BankAccounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BankAccounts_Currencies" Association="Self.FK_BankAccounts_Currencies">
+      <End Role="Currencies" EntitySet="Currencies" />
+      <End Role="BankAccounts" EntitySet="BankAccounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BankAccounts_Users" Association="Self.FK_BankAccounts_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="BankAccounts" EntitySet="BankAccounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transactions_Currencies" Association="Self.FK_Transactions_Currencies">
+      <End Role="Currencies" EntitySet="Currencies" />
+      <End Role="Transactions" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersRoles_Roles" Association="Self.FK_UsersRoles_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="UsersRoles" EntitySet="UsersRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersRoles_Users" Association="Self.FK_UsersRoles_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UsersRoles" EntitySet="UsersRoles" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

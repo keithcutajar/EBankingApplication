@@ -1,0 +1,10 @@
+C:\Users\Achmand\Documents\Visual Studio 2015\Projects\DistributedSystems\BankApplication\Common\bin\Debug\Common.dll.config
+C:\Users\Achmand\Documents\Visual Studio 2015\Projects\DistributedSystems\BankApplication\Common\bin\Debug\Common.dll
+C:\Users\Achmand\Documents\Visual Studio 2015\Projects\DistributedSystems\BankApplication\Common\bin\Debug\Common.pdb
+C:\Users\Achmand\Documents\Visual Studio 2015\Projects\DistributedSystems\BankApplication\Common\bin\Debug\EntityFramework.dll
+C:\Users\Achmand\Documents\Visual Studio 2015\Projects\DistributedSystems\BankApplication\Common\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Achmand\Documents\Visual Studio 2015\Projects\DistributedSystems\BankApplication\Common\bin\Debug\EntityFramework.xml
+C:\Users\Achmand\Documents\Visual Studio 2015\Projects\DistributedSystems\BankApplication\Common\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Achmand\Documents\Visual Studio 2015\Projects\DistributedSystems\BankApplication\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
+C:\Users\Achmand\Documents\Visual Studio 2015\Projects\DistributedSystems\BankApplication\Common\obj\Debug\Common.dll
+C:\Users\Achmand\Documents\Visual Studio 2015\Projects\DistributedSystems\BankApplication\Common\obj\Debug\Common.pdb

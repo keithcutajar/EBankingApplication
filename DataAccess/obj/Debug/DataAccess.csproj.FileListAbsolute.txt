@@ -1,0 +1,12 @@
+C:\Users\Achmand\Documents\Visual Studio 2015\Projects\DistributedSystems\BankApplication\DataAccess\bin\Debug\DataAccess.dll.config
+C:\Users\Achmand\Documents\Visual Studio 2015\Projects\DistributedSystems\BankApplication\DataAccess\bin\Debug\DataAccess.dll
+C:\Users\Achmand\Documents\Visual Studio 2015\Projects\DistributedSystems\BankApplication\DataAccess\bin\Debug\DataAccess.pdb
+C:\Users\Achmand\Documents\Visual Studio 2015\Projects\DistributedSystems\BankApplication\DataAccess\bin\Debug\Common.dll
+C:\Users\Achmand\Documents\Visual Studio 2015\Projects\DistributedSystems\BankApplication\DataAccess\bin\Debug\EntityFramework.dll
+C:\Users\Achmand\Documents\Visual Studio 2015\Projects\DistributedSystems\BankApplication\DataAccess\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Achmand\Documents\Visual Studio 2015\Projects\DistributedSystems\BankApplication\DataAccess\bin\Debug\Common.pdb
+C:\Users\Achmand\Documents\Visual Studio 2015\Projects\DistributedSystems\BankApplication\DataAccess\bin\Debug\EntityFramework.xml
+C:\Users\Achmand\Documents\Visual Studio 2015\Projects\DistributedSystems\BankApplication\DataAccess\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Achmand\Documents\Visual Studio 2015\Projects\DistributedSystems\BankApplication\DataAccess\obj\Debug\DataAccess.csprojResolveAssemblyReference.cache
+C:\Users\Achmand\Documents\Visual Studio 2015\Projects\DistributedSystems\BankApplication\DataAccess\obj\Debug\DataAccess.dll
+C:\Users\Achmand\Documents\Visual Studio 2015\Projects\DistributedSystems\BankApplication\DataAccess\obj\Debug\DataAccess.pdb

@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BankSystemDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Currency">
+    <Key>
+      <PropertyRef Name="CurrencyCode" />
+    </Key>
+    <Property Name="CurrencyCode" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Transactions" Relationship="BankSystemDBModel.FK_Transactions_Currencies" FromRole="Currency" ToRole="Transaction" />
+    <NavigationProperty Name="BankAccounts" Relationship="BankSystemDBModel.FK_BankAccounts_Currencies" FromRole="Currency" ToRole="BankAccount" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="Self.UsersRoles" FromRole="Roles" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Username" />
+    </Key>
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Dob" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Roles" Relationship="Self.UsersRoles" FromRole="Users" ToRole="Roles" />
+    <NavigationProperty Name="BankAccounts" Relationship="BankSystemDBModel.FK_BankAccounts_Users" FromRole="User" ToRole="BankAccount" />
+  </EntityType>
+  <Association Name="UsersRoles">
+    <End Role="Roles" Type="Self.Role" Multiplicity="*" />
+    <End Role="Users" Type="Self.User" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="BankSystemDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Currencies" EntityType="Self.Currency" />
+    <EntitySet Name="Roles" EntityType="Self.Role" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="UsersRoles" Association="Self.UsersRoles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <EntitySet Name="Transactions" EntityType="BankSystemDBModel.Transaction" />
+    <AssociationSet Name="FK_Transactions_Currencies" Association="BankSystemDBModel.FK_Transactions_Currencies">
+      <End Role="Currency" EntitySet="Currencies" />
+      <End Role="Transaction" EntitySet="Transactions" />
+    </AssociationSet>
+    <EntitySet Name="AccountTypes" EntityType="BankSystemDBModel.AccountType" />
+    <EntitySet Name="BankAccounts" EntityType="BankSystemDBModel.BankAccount" />
+    <AssociationSet Name="FK_BankAccounts_AccountTypes" Association="BankSystemDBModel.FK_BankAccounts_AccountTypes">
+      <End Role="AccountType" EntitySet="AccountTypes" />
+      <End Role="BankAccount" EntitySet="BankAccounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BankAccounts_Currencies" Association="BankSystemDBModel.FK_BankAccounts_Currencies">
+      <End Role="Currency" EntitySet="Currencies" />
+      <End Role="BankAccount" EntitySet="BankAccounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BankAccounts_Users" Association="BankSystemDBModel.FK_BankAccounts_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="BankAccount" EntitySet="BankAccounts" />
+    </AssociationSet>
+    <EntitySet Name="InterestRates" EntityType="BankSystemDBModel.InterestRate" />
+  </EntityContainer>
+  <EntityType Name="Transaction">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AccountNo_Fk" Type="Int64" Nullable="false" />
+    <Property Name="Details" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Currency_Fk" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="Amount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Transaction_Timestamp" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Currency" Relationship="BankSystemDBModel.FK_Transactions_Currencies" FromRole="Transaction" ToRole="Currency" />
+  </EntityType>
+  <Association Name="FK_Transactions_Currencies">
+    <End Type="BankSystemDBModel.Currency" Role="Currency" Multiplicity="1" />
+    <End Type="BankSystemDBModel.Transaction" Role="Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Currency">
+        <PropertyRef Name="CurrencyCode" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="Currency_Fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="AccountType">
+    <Key>
+      <PropertyRef Name="Name" />
+    </Key>
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="BankAccounts" Relationship="BankSystemDBModel.FK_BankAccounts_AccountTypes" FromRole="AccountType" ToRole="BankAccount" />
+  </EntityType>
+  <EntityType Name="BankAccount">
+    <Key>
+      <PropertyRef Name="Iban" />
+    </Key>
+    <Property Name="Iban" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Currency_Fk" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="Balance" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Username_Fk" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DateOpened" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AccountType_Fk" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AccountNumber" Type="Int64" Nullable="false" />
+    <Property Name="DateExpired" Type="DateTime" Precision="3" />
+    <Property Name="FriendlyName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Expired" Type="Boolean" />
+    <NavigationProperty Name="AccountType" Relationship="BankSystemDBModel.FK_BankAccounts_AccountTypes" FromRole="BankAccount" ToRole="AccountType" />
+    <NavigationProperty Name="Currency" Relationship="BankSystemDBModel.FK_BankAccounts_Currencies" FromRole="BankAccount" ToRole="Currency" />
+    <NavigationProperty Name="User" Relationship="BankSystemDBModel.FK_BankAccounts_Users" FromRole="BankAccount" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_BankAccounts_AccountTypes">
+    <End Type="BankSystemDBModel.AccountType" Role="AccountType" Multiplicity="1" />
+    <End Type="BankSystemDBModel.BankAccount" Role="BankAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AccountType">
+        <PropertyRef Name="Name" />
+      </Principal>
+      <Dependent Role="BankAccount">
+        <PropertyRef Name="AccountType_Fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BankAccounts_Currencies">
+    <End Type="BankSystemDBModel.Currency" Role="Currency" Multiplicity="1" />
+    <End Type="BankSystemDBModel.BankAccount" Role="BankAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Currency">
+        <PropertyRef Name="CurrencyCode" />
+      </Principal>
+      <Dependent Role="BankAccount">
+        <PropertyRef Name="Currency_Fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BankAccounts_Users">
+    <End Type="BankSystemDBModel.User" Role="User" Multiplicity="1" />
+    <End Type="BankSystemDBModel.BankAccount" Role="BankAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Username" />
+      </Principal>
+      <Dependent Role="BankAccount">
+        <PropertyRef Name="Username_Fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="InterestRate">
+    <Key>
+      <PropertyRef Name="Month" />
+    </Key>
+    <Property Name="Month" Type="Int32" Nullable="false" />
+    <Property Name="Rate" Type="Decimal" Nullable="false" Precision="4" Scale="2" />
+  </EntityType>
+</Schema>
